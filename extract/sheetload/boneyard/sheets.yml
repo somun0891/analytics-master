@@ -1,0 +1,91 @@
+sheets:
+  - name: bronze_sus_responders_fy22q1
+    owner: '@jeanpeguero'
+    tabs:
+      - bronze_sus_responders_fy22q1
+  - name: case_creation_data
+    owner: '@sglad'
+    tabs:
+      - case_data
+  - name: country_lat_long
+    owner: '@nicolegalang'
+    tabs:
+      - latitude_and_longitude
+  - name: credit_card_adoption_rate_by_country
+    owner: '@nraisinghani'
+    tabs:
+      - credit_card_adoption_rate
+  - name: crm_accounts_pricing_eoa
+    owner: '@jeanpeguero'
+    tabs:
+      - crm_accounts_pricing_eoa
+  - name: ecommerce_expanded
+    owner: '@jeanpeguero'
+    tabs:
+      - ecommerce_expanded
+  - name: frontend_interview_metrics
+    owner: '@andr3'
+    tabs:
+      - interviews
+      - rubric_max_points
+  - name: gainsight_golden_records
+    owner: '@snalamaru'
+    tabs:
+      - sample_gainsight_golden_records
+  - name: gainsight_product_usage_metrics
+    owner: '@snalamaru'
+    tabs:
+      - gainsight_product_usage_metrics
+  - name: gitlab_product_mrs_size
+    owner: '@kwiebers'
+    tabs:
+      - gitlab_product_mrs_size
+  - name: low_touch_targets_fy23
+    owner: '@mfleisher'
+    tabs:
+      - low_touch_targets_fy23
+  - name: opportunity_forecasts
+    owner: '@kdietz'
+    tabs:
+      - opportunity_forecasts_202311
+  - name: opt_out_contacts
+    owner: '@Jean Peguero'
+    tabs:
+      - do_not_email_contacts
+  - name: pricing_list
+    owner: '@Jean Peguero'
+    tabs:
+      - pricing_list
+  - name: pnps_2023_respondents
+    owner: '@moliver28'
+    tabs:
+      - pnps_2023_respondents
+  - name: q4fy2021_system_usability_scale_results
+    owner: '@rbacovic'
+    tabs:
+      - individual_questions_analysis
+  - name: registry_transfer_namespaces
+    owner: '@joshua'
+    tabs:
+      - registry_transfer_namespaces
+  - name: test_sheet
+    owner: '@taylormurphy'
+    tabs:
+      - test_sheet
+  - name: trial_pageviews
+    owner: '@rkohnke'
+    tabs:
+      - trial_pageviews
+  - name: us_cities_latitude_longitude
+    owner: '@rkohnke'
+    tabs:
+      - us_cities_latitude_longitude
+  - name: namespace_segmentation
+    owner: '@kmagda'
+    tabs:
+      - namespace_segmentation_202202
+      - namespace_segmentation_202208
+  - name: downtier_20230117
+    owner: '@kmagda1'
+    tabs:
+      - downtier_20230117

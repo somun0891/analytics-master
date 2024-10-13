@@ -1,0 +1,7 @@
+
+target/
+dbt_packages/
+logs/
+to_check.txt
+sisense_elements.json
+reference_state/manifest.json

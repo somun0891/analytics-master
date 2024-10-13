@@ -1,0 +1,46 @@
+version: '1.0'
+data_classification:
+  MNPI:
+    description: MNPI data classification
+    include:
+      databases:
+        - RAW
+        - PREP
+        - PROD
+      schemas:
+        - RAW.*
+        - PREP.*
+        - PROD.*
+      tables:
+        - RAW.*.*
+        - PREP.*.*
+        - PROD.*.*
+    exclude:
+      databases:
+        - NONE
+      schemas:
+        - NONE.*
+      tables:
+        - NONE.*.*
+  PII:
+    description: PII data classification
+    include:
+      databases:
+        - RAW
+        - PREP
+        - PROD
+      schemas:
+        - RAW.*
+        - PREP.*
+        - PROD.*
+      tables:
+        - RAW.*.*
+        - PREP.*.*
+        - PROD.*.*
+    exclude:
+      databases:
+        - NONE
+      schemas:
+        - NONE.*
+      tables:
+        - NONE.*.*

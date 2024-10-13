@@ -1,0 +1,88 @@
+version: 2
+
+models:
+    - name: dbt_source_freshness
+      description: 'The current status of all DBT sources along with when the sources were last loaded.'
+      columns:
+        - name: freshness_observed_at
+          data_tests:
+            - not_null
+        - name: source_freshness_state
+          data_tests:
+            - not_null
+        - name: table_name
+          data_tests:
+            - not_null
+    - name: dbt_compilation_runtime
+      description: 'The most recent not null compilation time elapsed for each DBT model.'
+      columns:
+        - name: model_unique_id
+          data_tests:
+            - not_null
+            - unique
+        - name: compilation_time_seconds_elapsed
+          data_tests:
+            - not_null
+    - name: dbt_failing_tests
+      description: The DBT tests that are failing as of the last recorded test runs.
+      columns:
+        - name: test_unique_id
+          data_tests:
+            - not_null
+            - unique
+        - name: generated_at
+          data_tests:
+            - not_null
+    - name: dbt_last_successful_test_runs
+      description: The timestamp of the last successful test run for tests that are currently failing.
+      columns:
+        - name: test_unique_id
+          data_tests:
+            - not_null
+            - unique
+            - relationships:
+                to: ref('dbt_failing_tests')
+                field: test_unique_id
+        - name: last_successful_run_at
+    - name: dbt_run_results
+      description: "Information about compilation/execution time for DBT models."
+    - name: dbt_snapshots_results
+      description: Model for dbt snapshot results
+    - name: dbt_source_tests
+      description: Model for source testing
+    - name: dbt_test_results
+      description: "DBT test results by name and time"
+    - name: dbt_gdpr_logs
+      description: "DBT test results by name and time"
+    - name: wk_rpt_dbt_model_efficiency
+      description: A report for calculating the efficiency of dbt models.  It aggregates query data up to the dbt resource level and applies report level filtering.
+      columns:
+        - name: report_key
+          data_tests:
+            - unique
+        - name: dbt_invocation_id
+        - name: dbt_version
+        - name: dbt_run_started_at
+        - name: is_invocation_full_refresh
+        - name: airflow_dag_id
+        - name: airflow_task_id
+        - name: airflow_dag_run_date_id
+        - name: airflow_run_id
+        - name: airflow_try_number
+        - name: airflow_orchestration
+        - name: is_model_full_refresh
+        - name: model_materialization
+        - name: resource_id
+        - name: resource_name
+        - name: resource_type
+        - name: resource_bytes_scanned
+        - name: resource_bytes_written
+        - name: resource_bytes_spilled_to_remote_storage
+        - name: resource_bytes_spilled_to_local_storage
+        - name: resource_partitions_total
+        - name: resource_partitions_scanned
+        - name: resource_query_count
+        - name: resource_remote_storage_efficiency
+        - name: resource_local_storage_efficiency
+        - name: resource_partition_efficiency
+        - name: resource_efficiency_score

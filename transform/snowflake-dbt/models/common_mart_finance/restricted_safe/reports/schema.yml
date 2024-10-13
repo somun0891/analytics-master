@@ -1,0 +1,123 @@
+version: 2
+
+models:
+  - name: rpt_available_to_renew_8th_calendar_day
+    description: rpt_available_to_renew_combined should be used instead of this model as it includes logic to use the 5th day after 2024-03-01. Snapshot of the daily available to renew model taken on the 8th calendar day after month-end close.
+
+  - name: rpt_available_to_renew_combined
+    description: Snapshot of the daily available to renew model taken on the 8th calendar day after month-end close until 2024-03-01 and 5th calendar day after.
+
+  - name: rpt_available_to_renew_45th_calendar_day
+    description: Snapshot of the daily available to renew model taken on the 45th calendar day after month-end close.
+
+  - name: rpt_available_to_renew_top_monthly_changes
+    description: Report showing the subscriptions which moved into and out of available to renew status by month. Filtered to the top 10 subscriptions by ARR.
+    columns:
+      - name: snapshot_month
+        description: The month of the snapshot date being compared.
+      - name: parent_crm_account_name
+        description: '{{ doc("parent_crm_account_name") }}'
+      - name: subscription_name
+        description: Name applied to the subscription.
+      - name: total_arr
+        description: Annual recurring revenue associated with the subscription.
+      - name: atr_change_flag
+        description: ' {{ doc("atr_change_flag") }} '
+      - name: renewal_month
+      - name: fiscal_quarter_name_fy
+      - name: dim_subscription_id
+      - name: dim_crm_opportunity_id
+      - name: product_tier_name
+      - name: subscription_start_month
+      - name: subscription_end_month
+      - name: multi_year_booking_subscription_end_month
+
+  - name: rpt_retention_future_parent_account 
+    description: Report table to support Net Dollar Retention analysis at the ultimate_parent_account level using the following year's parent account. This model is built on top of rpt_delta_arr_parent_month_8th_calendar_day. We have added report_retention_fiscal_quarter_name_fy and report_retention_fiscal_year as columns that allow seamless data filtering in Tableau. Teport_retention_fiscal_quarter_name_fy will populate a value in every row where retention_month is the third month of the quarter - except in the current quarter, where it will populate the current month. Report_retention_fiscal_year similarly will populate only for the last month of the year, except in the current year where it will populate a value only for rows where the retention_month is the current month. The non-report fields will only populate values for the third month of the quarter / last month of the year, which does not account for the live data that is accessible in the current month of the year.
+    columns:
+      - name: primary_key
+        data_tests:
+          - not_null
+          - unique
+
+  - name: rpt_retention_parent_account
+    description: Report table to support retention analysis at the ultimate_parent_account. This model is built on top of rpt_delta_arr_parent_month_8th_calendar_day.
+    columns:
+      - name: primary_key
+        data_tests:
+          - not_null
+          - unique
+
+  - name: rpt_retention_parent_account_product
+    description: Report table to support retention analysis at the ultimate_parent_account || product level. This model is built on top of rpt_delta_arr_parent_month_8th_calendar_day.
+    columns:
+      - name: primary_key
+        data_tests:
+          - not_null
+          - unique
+
+  - name: rpt_retention_parent_account_delivery_type
+    description: Report table to support retention analysis at the ultimate_parent_account || delivery_type. This model is built on top of rpt_delta_arr_parent_month_8th_calendar_day.
+    columns:
+      - name: primary_key
+        data_tests:
+          - not_null
+          - unique
+
+  - name: rpt_retention_parent_account_combined
+    columns:
+      - name: primary_key
+        data_tests:
+          - not_null
+          - unique
+
+  - name: rpt_subscription_renewal_linking
+    description: ' {{ doc("rpt_subscription_renewal_linking") }} '
+    columns:
+      - name: renewal_subscription_name
+        data_tests:
+          - not_null
+      - name: previous_term_subscription_name
+        data_tests:
+          - not_null
+
+  - name: rpt_accounting_period_balance_monthly 
+    description: ' {{ doc("rpt_accounting_period_balance_monthly") }} '
+    columns:
+      - name: period
+        description: Calendar month and year when the transactions took place
+        data_tests:
+          - not_null
+          - unique
+      - name: starting_accounts_receivable
+        description: all columns described in ' {{ doc("rpt_accounting_period_balance_monthly") }} '
+
+  - name: rpt_booking_billing_collections_monthly 
+    description: ' {{ doc("rpt_booking_billing_collections_monthly") }} '
+    columns:
+      - name: period
+        description: Calendar month and year for which the metric is calculated
+        data_tests:
+          - not_null
+          - unique
+      - name: booking_amount
+        description: all columns described in ' {{ doc("rpt_booking_billing_collections_monthly") }} '
+      - name: invoice_amount_without_tax
+        description:  total, without tax, tax only - all columns described in ' {{ doc("rpt_booking_billing_collections_monthly") }} '
+      - name: total_current_collected
+        description:  is total amount collected in the period - all columns described in ' {{ doc("rpt_booking_billing_collections_monthly") }} '
+      - name: variance_booking_billing 
+        description: Subtraction  
+
+  - name: rpt_dso_cei_monthly 
+    description:  ' {{ doc("rpt_dso_cei_monthly") }} '
+    columns:
+      - name: period
+        description: Calendar month and year for which the metric is calculated
+        data_tests:
+          - not_null
+          - unique
+      - name: dso and cei
+        description: all columns described in ' {{ doc("rpt_dso_cei_monthly") }} '
+        
+
